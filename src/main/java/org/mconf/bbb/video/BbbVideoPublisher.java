@@ -44,8 +44,8 @@ public class BbbVideoPublisher {
 
 		opt = new ClientOptions();
 		opt.setClientVersionToUse(Utils.fromHex("00000000"));
-		opt.setHost(context.getJoinService().getApplicationService().getServerUrl());
-		opt.setAppName("video/" + context.getJoinService().getJoinedMeeting().getConference());
+		opt.setHost("192.168.1.3");
+		opt.setAppName("live");
 		opt.publishLive();
 		opt.setStreamName(streamName);
 		opt.setReaderToPublish(reader);
@@ -56,7 +56,6 @@ public class BbbVideoPublisher {
 	}
 	
 	public void start() {
-		context.getUsersModule().addStream(streamName);
 		if (videoConnection == null) {
 			videoConnection = new VideoPublisherConnection(opt, context);
 			videoConnection.connect();
@@ -64,7 +63,6 @@ public class BbbVideoPublisher {
 	}
 	
 	public void stop() {
-		context.getUsersModule().removeStream(streamName);
 		// when the stream is removed from the users module, the client automatically
 		// receives a NetStream.Unpublish.Success, then the channel is closed
 		// \TODO it's may create a memory leak, check it
