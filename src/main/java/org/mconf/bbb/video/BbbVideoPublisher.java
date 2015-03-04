@@ -44,7 +44,7 @@ public class BbbVideoPublisher {
 
 		opt = new ClientOptions();
 		opt.setClientVersionToUse(Utils.fromHex("00000000"));
-		opt.setHost("192.168.1.3");
+		opt.setHost("192.168.1.10");
 		opt.setAppName("live");
 		opt.publishLive();
 		opt.setStreamName(streamName);
